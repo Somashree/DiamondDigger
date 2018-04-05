@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <title>Retrieve details from RF ID</title>
+    </head>
+    <body class=”container” style="background-color: #f9f9f9; margin: 0;">
+        <h2 style="background-color: #24303d; border-color: #e7e7e7; text-align: center; padding: 20px 12px; border: 1px solid #eeeeee; box-shadow: 0 1px 2px #888888; color: #fff;">Retrieve Product Details</h2>
+        <div class=”tab-content”">
+            <!--This is set to display:block, and should change to none once the RFID is uploaded. -->
+            <div role=”tabpanel” id="tab-pane" class=”tab-pane active” id=”blockchain” style="margin-left: 25px;">
+                <form onsubmit="return false;">
+                    <label for="rfid" style="display: inline-block; margin: 10 30 10 25;">RFID: </label>
+                    <input type="file" id="rfid" name="file">
+                    <br>
+                    <input type="submit" value="Submit" style="margin: 15 25 10 25; background-color: #ff9801; padding: 12px 20px; color: white; border-radius: 8px;cursor: pointer;" onclick="showHide()">
+                    <br>
+                </form> 
+            </div>
+            <!--This is set to display:none, and should change to block once the RFID is uploaded. -->
+            <div id="view-ownership">
+                <h2>Here are the details of your gold:</h2>
+                <div style="margin-left:10px;"><b>Weight:</b> 8 lbs</div>
+                <div style="margin-left:10px;"><b>Karat:</b> 22</div>
+                <div style="margin-left:10px;"><b>Form/Shape:</b> Necklace</div>
+            </div>
+            <h3 id="error-message" style="margin-left: 25px; color: red"></h3>
+        </div>
+    </body>
+    <script>
+        function showHide() {
+            if(document.getElementById("rfid").value.indexOf("RFID.txt") >= 0) {
+                document.getElementById("view-ownership").style.display = "block";
+            } else {
+                document.getElementById("view-ownership").style.display = "none";
+                document.getElementById("error-message").innerHTML = "No data found related to the RFID enetered!";
+            }
+        }
+    </script>
+</html>
+
+<style>
+input[type=file] {
+-webkit-appearance: textfield;
+position: relative;
+-webkit-box-sizing: border-box;
+}
+
+input[type=file]::-webkit-file-upload-button {
+width: 0;
+padding: 0;
+margin: 0;
+-webkit-appearance: none;
+border: none;
+}
+
+/* "x::-webkit-file-upload-button" forces the rules to only apply to browsers that support this pseudo-element */
+x::-webkit-file-upload-button, input[type=file]:after {
+content: 'Upload File';
+display: inline-block;
+left: 50%;
+margin-left:3px;
+position: relative;
+-webkit-appearance: button;
+padding: 3px 8px 2px;
+}
+
+#view-ownership {
+    margin-left: 25px;
+    display: none;
+}
+
+#tab-pane {
+    display:block;
+}
+</style>
