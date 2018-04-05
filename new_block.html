@@ -18,7 +18,7 @@
                     <input type="text" id="colour" name="colour">
                     <br>
                     <label for="rfid" style="display: inline-block; margin: 10 30 10 25;">RFID: </label>
-                    <input type="text" id="rfid" name="rfid">
+                    <input type="file" id="rfid" name="file">
                     <br>
                     <input type="submit" value="Submit" style="margin: 15 25 10 25; background-color: #ff9801; padding: 12px 20px; color: white; border-radius: 8px;cursor: pointer;">
                     <br>
@@ -28,3 +28,29 @@
     </body>
   <script></script>
 </html>
+<style>
+input[type=file] {
+-webkit-appearance: textfield;
+position: relative;
+-webkit-box-sizing: border-box;
+}
+
+input[type=file]::-webkit-file-upload-button {
+width: 0;
+padding: 0;
+margin: 0;
+-webkit-appearance: none;
+border: none;
+}
+
+/* "x::-webkit-file-upload-button" forces the rules to only apply to browsers that support this pseudo-element */
+x::-webkit-file-upload-button, input[type=file]:after {
+content: 'Upload File';
+display: inline-block;
+left: 50%;
+margin-left:3px;
+position: relative;
+-webkit-appearance: button;
+padding: 3px 8px 2px;
+}
+</style>
