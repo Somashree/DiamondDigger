@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <title>Upload RF ID</title>
+    </head>
+    <body class=”container” style="background-color: #f9f9f9; margin: 0;">
+        <h2 style="background-color: #24303d; border-color: #e7e7e7; text-align: center; padding: 20px 12px; border: 1px solid #eeeeee; box-shadow: 0 1px 2px #888888; color: #fff;">Start your transaction</h2>
+        <div class=”tab-content”">
+            <!--This is set to display:block, and should change to none once the RFID is uploaded. -->
+            <div role=”tabpanel” class=”tab-pane active” id=”blockchain” style="margin-left: 25px;">
+                <form action="#">
+                    <label for="rfid" style="display: inline-block; margin: 10 30 10 25;">RFID: </label>
+                    <input type="file" id="rfid" name="file">
+                    <br>
+                    <input type="submit" value="Submit" style="margin: 15 25 10 25; background-color: #ff9801; padding: 12px 20px; color: white; border-radius: 8px;cursor: pointer;">
+                    <br>
+                </form> 
+                <!--This is set to display:none, and should change to block once the RFID is uploaded. -->
+                <div class="transfer-ownership">
+                    <h2>Here are the details of your diamond:</h2>
+                    <form action="#">
+                        <input type="submit" value="Transfer Ownership" style="margin: 15 25 25 0; background-color: #ff9801; padding: 12px 20px; color: white; border-radius: 8px;cursor: pointer;">
+                        <br>
+                    </form>
+                </div>
+        </div>
+    </body>
+  <script></script>
+</html>
+
+<style>
+input[type=file] {
+-webkit-appearance: textfield;
+position: relative;
+-webkit-box-sizing: border-box;
+}
+
+input[type=file]::-webkit-file-upload-button {
+width: 0;
+padding: 0;
+margin: 0;
+-webkit-appearance: none;
+border: none;
+}
+
+/* "x::-webkit-file-upload-button" forces the rules to only apply to browsers that support this pseudo-element */
+x::-webkit-file-upload-button, input[type=file]:after {
+content: 'Upload File';
+display: inline-block;
+left: 50%;
+margin-left:3px;
+position: relative;
+-webkit-appearance: button;
+padding: 3px 8px 2px;
+}
+
+.transfer-ownership {
+    display: none;
+}
+
+.tab-pane {
+    display:block;
+}
+</style>
