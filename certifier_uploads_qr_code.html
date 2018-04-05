@@ -6,29 +6,42 @@
         <h2 style="background-color: #24303d; border-color: #e7e7e7; text-align: center; padding: 20px 12px; border: 1px solid #eeeeee; box-shadow: 0 1px 2px #888888; color: #fff;">Start your transaction</h2>
         <div class=”tab-content”">
             <!--This is set to display:block, and should change to none once the RFID is uploaded. -->
-            <div role=”tabpanel” class=”tab-pane active” id=”blockchain” style="margin-left: 25px;">
+            <div role=”tabpanel” id="tab-pane" class=”tab-pane active” id=”blockchain” style="margin-left: 25px;">
                 <form action="#">
                     <label for="rfid" style="display: inline-block; margin: 10 30 10 25;">RFID: </label>
                     <input type="file" id="rfid" name="file">
                     <br>
-                    <input type="submit" value="Submit" style="margin: 15 25 10 25; background-color: #ff9801; padding: 12px 20px; color: white; border-radius: 8px;cursor: pointer;">
+                    <input type="submit" value="Submit" style="margin: 15 25 10 25; background-color: #ff9801; padding: 12px 20px; color: white; border-radius: 8px;cursor: pointer;" onclick="showHide()">
                     <br>
                 </form> 
-                <!--This is set to display:none, and should change to block once the RFID is uploaded. -->
-                <div class="certification">
+            </div>
+            <!--This is set to display:none, and should change to block once the RFID is uploaded. -->
+                <div id="certification">
                     <h2>Here are the details of your gold:</h2>
+                    <div style="margin-left:10px;"><b>Weight:</b> 8 lbs</div>
+                    <div style="margin-left:10px;"><b>Karat:</b> 22</div>
+                    <div style="margin-left:10px;"><b>Form/Shape:</b> Necklace</div>
                     <h3>You are authorized to certify this product.</h3> 
                     <form action="#">
                         <label for="rfid" style="display: inline-block; margin: 10 30 25 25;">Certificate: </label>
                         <input type="file" id="rfid" name="file">
                         <br>
-                        <input type="submit" value="Submit" style="margin: 15 25 25 25; background-color: #ff9801; padding: 12px 20px; color: white; border-radius: 8px;cursor: pointer;">
+                        <input type="submit" value="Submit" style="margin: 15 25 25 25; background-color: #ff9801; padding: 12px 20px; color: white; border-radius: 8px;cursor: pointer;" onclick="showMessage()">
                         <br>
                     </form>
+                    <h3 id="success-message" style="margin-left: 25px; color: green"></h3>
                 </div>
         </div>
     </body>
-  <script></script>
+<script>
+    function showHide() {
+         document.getElementById("tab-pane").style.display = "none";
+         document.getElementById("certification").style.display = "block";
+    }
+    function showMessage() {
+         document.getElementById("success-message").innerHTML = "Product Certified successfully! Block creation is complete.";
+    }
+</script>
 </html>
 
 <style>
@@ -57,11 +70,12 @@ position: relative;
 padding: 3px 8px 2px;
 }
 
-.certification {
+#certification {
+    margin-left: 25px;
     display: none;
 }
 
-.tab-pane {
+#tab-pane {
     display:block;
 }
 </style>
