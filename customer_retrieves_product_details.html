@@ -22,16 +22,17 @@
                 <div style="margin-left:10px;"><b>Karat:</b> 22</div>
                 <div style="margin-left:10px;"><b>Form/Shape:</b> Necklace</div>
             </div>
-            <h3 id="error-message" style="margin-left: 25px; color: red"></h3>
+            <h3 id="error-message" style="margin-left: 25px; color: red">No data found related to the RFID enetered!</h3>
         </div>
     </body>
     <script>
         function showHide() {
             if(document.getElementById("rfid").value.indexOf("RFID.txt") >= 0) {
+                document.getElementById("error-message").style.display = "none";
                 document.getElementById("view-ownership").style.display = "block";
             } else {
                 document.getElementById("view-ownership").style.display = "none";
-                document.getElementById("error-message").innerHTML = "No data found related to the RFID enetered!";
+                document.getElementById("error-message").style.display = "block";
             }
         }
     </script>
@@ -70,5 +71,9 @@ padding: 3px 8px 2px;
 
 #tab-pane {
     display:block;
+}
+
+#error-message {
+    display: none;
 }
 </style>
