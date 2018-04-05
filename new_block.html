@@ -20,13 +20,18 @@
                     <label for="rfid" style="display: inline-block; margin: 10 50 10 25;">RFID: </label>
                     <input type="file" id="rfid" name="file">
                     <br>
-                    <input type="submit" value="Submit" style="margin: 15 25 10 25; background-color: #ff9801; padding: 12px 20px; color: white; border-radius: 8px;cursor: pointer;">
+                    <input type="submit" value="Submit" style="margin: 15 25 10 25; background-color: #ff9801; padding: 12px 20px; color: white; border-radius: 8px;cursor: pointer;"  onclick="showMessage()">
                     <br>
                 </form> 
+                <h3 id="success-message" style="margin-left: 25px; color: green"></h3>
             </div>
         </div>
     </body>
-  <script></script>
+  <script>
+    function showMessage() {
+         document.getElementById("success-message").innerHTML = "Gold details saved. Please certify your gold to complete the creation of your block.";
+    }
+  </script>
 </html>
 <style>
 input[type=file] {
