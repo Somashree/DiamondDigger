@@ -1,0 +1,121 @@
+<html>
+ <head>
+  <title>Web3 — Simple Demo</title>
+
+  <script src="web3.js-develop/dist/web3.js"></script>
+  <script src="jquery-3.3.1.min.js"></script>
+
+  <script>
+  console.log("yo");
+  var Web3 = require('web3');
+
+  var web3 = new Web3();
+  web3.setProvider(new web3.providers.HttpProvider("http://127.0.0.1:8545"));
+
+  var sampleContractABI = [{constant:false,inputs:[],name:'kill',outputs:[],type:'function'},{constant:true,inputs:[],name:'greet',outputs:[{name:'',type:'string'}],type:'function'},{inputs:[{name:'_greeting',type:'string'}],type:'constructor'}]
+
+  var swetaContractABI = [
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "kill",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "greet",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"name": "_greeting",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	}
+];
+  var sampleContract = web3.eth.contract(sampleContractABI);
+  var item_addr = sampleContract.at('0x61d0F4a9Cf18E255E0F72f1FCD453687cf79F0EF')
+  var karat_addr = sampleContract.at('0x6523715e87408245Acf9D6B356C120cbA729184B')
+  var weight_addr = sampleContract.at('0x62C260D698D7a5ecdd9650DC2aDC05D958fFb505')
+
+  // var sampleContractInstance = sampleContract.at('0x139a776deea092109105b40b97be5641236d1aac');
+  var item = item_addr.greet.call();
+  var karat = karat_addr.greet.call();
+  var weight = weight_addr.greet.call();
+
+  console.log(item)
+  console.log(karat)
+  console.log(weight)
+
+
+  $("#blockchain button.set").click(function() {
+
+    console.log("setting");
+
+    var value = $("#blockchain input.text").val();
+    var params = {
+      gas: 40000,
+      from: "0x2a822af0cc599943b7185e88b43c9ccedaf97c07"
+    };
+
+      console.log("setting");
+
+      swetaContractInstance.sendTransaction.set(value, params)
+
+      SimpleStorage.sendTransaction.set(value, params);
+    });
+
+    $("#blockchain button.get").click(function() {
+      var value = swetaContractInstance.get.call();
+      //var value =
+      $("#blockchain .value").html(value);
+    });
+
+  </script>
+
+
+
+ </head>
+ <body class="container">
+
+  <h3>Web3 — Usage Example</h3>
+   <div class="tab-content">
+   <div role="tabpanel" class="tab-pane active" id="blockchain">
+  <h3> 1. Set the value in the blockchain</h3>
+   <div class="form-group form-inline">
+    <input type="text" class="text form-control" value="Siri">
+      <button class="set btn btn-primary">Set Value</button>
+        <p>Once you set the value, an event will be created which will be used to identify the status of the transaction.</p>
+   </div>
+  <h3> 2. Get the current value</h3>
+   <div class="form-group">
+    <div>
+     current value is <span class="value"></span>
+   </div>
+    <button class="get btn btn-primary">Get Value</button>
+      <p>Click the button to get the current value. The initial value of the variable name is “ZeonLab”.</p>
+
+    </div>
+  <h3> 3. Contract Calls </h3>
+      <p>Javascript calls being made: </p>
+   </div>
+   </div>
+</body>
+</html>

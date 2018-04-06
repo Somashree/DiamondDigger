@@ -1,0 +1,93 @@
+<html>
+ <head>
+  <title>Web3 — Simple Demo</title>
+
+  <script src="web3.js-develop/dist/web3.js"></script>
+  <script src="jquery-3.3.1.min.js"></script>
+
+  <script>
+  console.log("yo");
+  var Web3 = require('web3');
+
+  var web3 = new Web3();
+  web3.setProvider(new web3.providers.HttpProvider("http://127.0.0.1:8545"));
+
+  // var sampleContractABI = [{constant:false,inputs:[],name:'kill',outputs:[],type:'function'},{constant:true,inputs:[],name:'greet',outputs:[{name:'',type:'string'}],type:'function'},{inputs:[{name:'_greeting',type:'string'}],type:'constructor'}]
+// 0xb8CFDD7aDc7Fd75B5e0Cc1BdFf22867b9232f798
+  var diamondContractABI = [{"constant":true,"inputs":[],"name":"getWeight","outputs":[{"name":"_weight","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getOwner","outputs":[{"name":"_owner","type":"bytes15"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getName","outputs":[{"name":"_name","type":"bytes15"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getKarat","outputs":[{"name":"_karat","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getCertificateId","outputs":[{"name":"_certificateId","type":"bytes15"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes15"},{"name":"_weight","type":"uint256"},{"name":"_karat","type":"uint256"},{"name":"_owner","type":"bytes15"},{"name":"_certificateId","type":"bytes15"}],"name":"register","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_owner","type":"bytes15"}],"name":"transfer","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}];
+
+  var sampleContract = web3.eth.contract(diamondContractABI);
+  var sampleContractInstance = sampleContract.at('0x9C75D2d562cF0a8832218bCB8277bb03Bb1CC6eF');
+  console.log(sampleContractInstance);
+
+  var karat = sampleContractInstance.getKarat.call().toString();
+  console.log(karat);
+
+  var weight = sampleContractInstance.getWeight.call().toString();
+  console.log(weight);
+
+  var owner = web3.toUtf8(sampleContractInstance.getOwner.call().toString());
+
+  console.log(owner);
+
+  // var greet2 = sampleContractInstance.greet2.call();
+  // var greet3 = sampleContractInstance.greet3.call();
+
+  // console.log(sampleContractInstance)
+  // console.log(greet2)
+  // console.log(greet3)
+
+  // $("#blockchain button.set").click(function() {
+  //
+  //   console.log("setting");
+  //
+  //   var value = $("#blockchain input.text").val();
+  //   var params = {
+  //     gas: 40000,
+  //     from: "0x2a822af0cc599943b7185e88b43c9ccedaf97c07"
+  //   };
+  //
+  //     console.log("setting");
+  //
+  //     swetaContractInstance.sendTransaction.set(value, params)
+  //
+  //     SimpleStorage.sendTransaction.set(value, params);
+  //   });
+  //
+  //   $("#blockchain button.get").click(function() {
+  //     var value = swetaContractInstance.get.call();
+  //     //var value =
+  //     $("#blockchain .value").html(value);
+  //   });
+
+  </script>
+
+
+
+ </head>
+ <body class="container">
+
+  <h3>Web3 — Usage Example</h3>
+   <div class="tab-content">
+   <div role="tabpanel" class="tab-pane active" id="blockchain">
+  <h3> 1. Set the value in the blockchain</h3>
+   <div class="form-group form-inline">
+    <input type="text" class="text form-control" value="Siri">
+      <button class="set btn btn-primary">Set Value</button>
+        <p>Once you set the value, an event will be created which will be used to identify the status of the transaction.</p>
+   </div>
+  <h3> 2. Get the current value</h3>
+   <div class="form-group">
+    <div>
+     current value is <span class="value"></span>
+   </div>
+    <button class="get btn btn-primary">Get Value</button>
+      <p>Click the button to get the current value. The initial value of the variable name is “ZeonLab”.</p>
+
+    </div>
+  <h3> 3. Contract Calls </h3>
+      <p>Javascript calls being made: </p>
+   </div>
+   </div>
+</body>
+</html>
