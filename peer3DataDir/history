@@ -1,0 +1,180 @@
+admin.peers
+admin.addPeer("enode://8859a2cd9561981b6293ec71daa993af556d8c163d5b487d6b48cee74c6c1408daf3546a9590c955e09b3b48ec6f4b07e386927bc49d45ac047eccb273cf5f04@10.84.160.173:30303")
+admin.peers
+eth.blockNumber
+loadScript("/Users/geetsa/workplace/BlockChain/smartcontract_diamond.js")
+miner.start()
+miner.stop()
+loadScript("/Users/geetsa/workplace/BlockChain/smartcontract_diamond.js")
+admin.peerds
+admin.peers
+eth.greet
+eth.greet()
+var diamondContractABI = [
+{
+"constant": false,
+"inputs": [],
+"name": "kill",
+"outputs": [],
+"payable": false,
+"stateMutability": "nonpayable",
+"type": "function"
+},
+{
+"constant": true,
+"inputs": [],
+"name": "greet3",
+"outputs": [
+{
+"name": "",
+"type": "string"
+}
+],
+"payable": false,
+"stateMutability": "view",
+"type": "function"
+},
+{
+"constant": true,
+"inputs": [],
+"name": "greet2",
+"outputs": [
+{
+"name": "",
+"type": "string"
+}
+],
+"payable": false,
+"stateMutability": "view",
+"type": "function"
+},
+{
+"constant": true,
+"inputs": [],
+"name": "greet",
+"outputs": [
+{
+"name": "",
+"type": "string"
+}
+],
+"payable": false,
+"stateMutability": "view",
+"type": "function"
+},
+{
+"inputs": [
+{
+"name": "_karat",
+"type": "string"
+},
+{
+"name": "_weight",
+"type": "string"
+},
+{
+"name": "_item",
+"type": "string"
+}
+],
+"payable": false,
+"stateMutability": "nonpayable",
+"type": "constructor"
+}
+];
+var ABI = <html> <head>  <title>Web3 — Simple Demo</title>  <script src="web3.js-develop/dist/web3.js"></script>  <script src="jquery-3.3.1.min.js"></script>  <script>  console.log("yo");  var Web3 = require('web3');  var web3 = new Web3();  web3.setProvider(new web3.providers.HttpProvider("http://127.0.0.1:8545"));  // var sampleContractABI = [{constant:false,inputs:[],name:'kill',outputs:[],type:'function'},{constant:true,inputs:[],name:'greet',outputs:[{name:'',type:'string'}],type:'function'},{inputs:[{name:'_greeting',type:'string'}],type:'constructor'}]  var diamondContractABI "constant": false,"inputs": ["name": "kill","outputs": ["payable": false,"stateMutability": "nonpayable","type": "function"{"constant": true,"inputs": ["name": "greet3"outputs""name": ""type": "string"}"payable": false,"stateMutability": "view","type": "function"{"constant": true,"inputs": ["name": "greet2"outputs""name": ""type": "string"}"payable": false,"stateMutability": "view","type": "function"{"constant": true,"inputs": ["name": "greet","outputs""name": ""type": "string"}"payable": false,"stateMutability": "view","type": "function"{"inputs""name": "_karat","type": "string"{"name": "_weight","type": "string"{"name": "_item","type": "string"}"payable": false,"stateMutability": "nonpayable","type": "constructor}];  var sampleContract = web3.eth.contract(diamondContractABI);  var sampleContractInstance = sampleContract.at('0xf54648770f38104d5CB1543df237E30B28ac6796');  console.log(sampleContractInstance);  var greet = sampleContractInstance.greet.call();  // var greet2 = sampleContractInstance.greet2.call();  // var greet3 = sampleContractInstance.greet3.call();  console.log(greet)  // console.log(greet2)  // console.log(greet3)  // $("#blockchain button.set").click(function() {  //  //   console.log("setting");  //  //   var value = $("#blockchain input.text").val();  //   var params = {  //     gas: 40000,  //     from: "0x2a822af0cc599943b7185e88b43c9ccedaf97c07"  //   };  //  //     console.log("setting");  //  //     swetaContractInstance.sendTransaction.set(value, params)  //  //     SimpleStorage.sendTransaction.set(value, params);  //   });  //  //   $("#blockchain button.get").click(function() {  //     var value = swetaContractInstance.get.call();  //     //var value =  //     $("#blockchain .value").html(value);  //   });  </script> </head> <body class="container">  <h3>Web3 — Usage Example</h3>   <div class="tab-content">   <div role="tabpanel" class="tab-pane active" id="blockchain">  <h3> 1. Set the value in the blockchain</h3>   <div class="form-group form-inline">    <input type="text" class="text form-control" value="Siri">      <button class="set btn btn-primary">Set Value</button>        <p>Once you set the value, an event will be created which will be used to identify the status of the transaction.</p>   </div>  <h3> 2. Get the current value</h3>   <div class="form-group">    <div>     current value is <span class="value"></span>   </div>    <button class="get btn btn-primary">Get Value</button>      <p>Click the button to get the current value. The initial value of the variable name is “ZeonLab”.</p>    </div>  <h3> 3. Contract Calls </h3>      <p>Javascript calls being made: </p>   </div>   </div></body></html>r"],},},:{ [},],",:{ [],},],",:{ [",],},],",:{ [",],},],],={ [
+var diamondContractABI = [{  "constant": false,  "inputs": [],  "name": "kill",  "outputs": [],  "payable": false,  "stateMutability": "nonpayable",  "type": "function"},{  "constant": true,  "inputs": [],  "name": "greet3",  "outputs": [    {      "name": "",      "type": "string"    }  ],  "payable": false,  "stateMutability": "view",  "type": "function"},{  "constant": true,  "inputs": [],  "name": "greet2",  "outputs": [    {      "name": "",      "type": "string"    }  ],  "payable": false,  "stateMutability": "view",  "type": "function"},{  "constant": true,  "inputs": [],  "name": "greet",  "outputs": [    {      "name": "",      "type": "string"    }  ],  "payable": false,  "stateMutability": "view",  "type": "function"},{  "inputs": [    {      "name": "_karat",      "type": "string"    },    {      "name": "_weight",      "type": "string"    },    {      "name": "_item",      "type": "string"    }  ],  "payable": false,  "stateMutability": "nonpayable",  "type": "constructor"}];
+var greeter = eth.contract(ABI).at("0xf54648770f38104d5CB1543df237E30B28ac6796")
+var greeter = eth.contract(diamondContractABI).at("0xf54648770f38104d5CB1543df237E30B28ac6796")
+greeter.greet()
+greeter.greet2()
+greeter.greet3()
+greeter.greet2
+greeter.greet3();
+var greeter = eth.contract(diamondContractABI).at("0xf54648770f38104d5CB1543df237E30B28ac6796");
+greeter.greet3();
+var ABI = [{"constant":false,"inputs":[],"name":"kill","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"greet3","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"greet2","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"greet","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"_karat","type":"string"},{"name":"_weight","type":"string"},{"name":"_item","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"}];
+var greeter = eth.contract(ABI).at("0xf54648770f38104d5CB1543df237E30B28ac6796");
+greeter.greet3();
+greeter.greet2();
+greeter.greet();
+var ABI = [{"constant":false,"inputs":[],"name":"kill","outputs":[],"type":"function"},{"constant":true,"inputs":[],"name":"greet3","outputs":[{"name":"","type":"string"}],"type":"function"},{"constant":true,"inputs":[],"name":"greet2","outputs":[{"name":"","type":"string"}],"type":"function"},{"constant":true,"inputs":[],"name":"greet","outputs":[{"name":"","type":"string"}],"type":"function"},{"inputs":[{"name":"_karat","type":"string"},{"name":"_weight","type":"string"},{"name":"_item","type":"string"}],"type":"constructor"}];
+var greeter = eth.contract(ABI).at("0xf54648770f38104d5CB1543df237E30B28ac6796");
+greeter.greet();
+eth.blockNumber
+admin.peers
+eth.getPendingTransactions
+eth.getPendingTransactions()
+eth.getPendingTransactions(eth.coinbase)
+eth.blockNumber
+greeter.owner
+greeter.kill()
+greeter.kill.sendTransaction(from:eth.accounts[0]);
+greeter.kill.sendTransaction({from:eth.accounts[0]});
+greeter.greet();
+greeter.kill.sendTransaction({from:eth.accounts[0]});
+eth.getPendingTransactions()
+greeter.address
+eth.getCode(greeter.address)
+greeter.greet();
+var greeter = eth.contract(ABI).at("0xf54648770f38104d5CB1543df237E30B28ac6796");
+greeter.greet();
+greeter.kill.sendTransaction({from:eth.accounts[0]});
+eth.getTransaction("0xc859f9ca28575182eb94992fad3b47fce32d59f58cf6bd5490046b798122fe05")
+eth.blockNumber
+loadScript("/Users/geetsa/workplace/BlockChain/smartcontract_diamond.js")
+{
+"inputs": [
+{
+"name": "_karat",
+"type": "string"
+},
+{
+"name": "_weight",
+"type": "string"
+},
+{
+"name": "_item",
+"type": "string"
+}
+],
+"payable": false,
+"stateMutability": "nonpayable",
+"type": "constructor"
+}
+var _greeting = "Gold"
+var greeterContract = web3.eth.contract([{"constant":false,"inputs":[],"name":"kill","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"greet","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"_greeting","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]);
+var greeter = greeterContract.new(
+   _greeting,
+   {
+     from: web3.eth.accounts[0], 
+     data: '0x6060604052341561000f57600080fd5b6040516103a93803806103a983398101604052808051820191905050336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055508060019080519060200190610081929190610088565b505061012d565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106100c957805160ff19168380011785556100f7565b828001600101855582156100f7579182015b828111156100f65782518255916020019190600101906100db565b5b5090506101049190610108565b5090565b61012a91905b8082111561012657600081600090555060010161010e565b5090565b90565b61026d8061013c6000396000f30060606040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806341c0e1b514610051578063cfae321714610066575b600080fd5b341561005c57600080fd5b6100646100f4565b005b341561007157600080fd5b610079610185565b6040518080602001828103825283818151815260200191508051906020019080838360005b838110156100b957808201518184015260208101905061009e565b50505050905090810190601f1680156100e65780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415610183576000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff5b565b61018d61022d565b60018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156102235780601f106101f857610100808354040283529160200191610223565b820191906000526020600020905b81548152906001019060200180831161020657829003601f168201915b5050505050905090565b6020604051908101604052806000815250905600a165627a7a72305820248e9cb42cce2cbc2411049f80263f39f80d8823dde51705a7b4bff6351d01c30029', 
+     gas: '4700000'
+   }, function (e, contract){
+    console.log(e, contract);
+    if (typeof contract.address !== 'undefined') {
+         console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
+    }
+ })
+var _greeting = "Gold"
+var greeterContract = web3.eth.contract([{"constant":false,"inputs":[],"name":"kill","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"greet","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[{"name":"_greeting","type":"string"}],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]);
+var greeter = greeterContract.new(
+   _greeting,
+   {
+     from: web3.eth.accounts[0], 
+     data: '0x6060604052341561000f57600080fd5b6040516103a93803806103a983398101604052808051820191905050336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055508060019080519060200190610081929190610088565b505061012d565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106100c957805160ff19168380011785556100f7565b828001600101855582156100f7579182015b828111156100f65782518255916020019190600101906100db565b5b5090506101049190610108565b5090565b61012a91905b8082111561012657600081600090555060010161010e565b5090565b90565b61026d8061013c6000396000f30060606040526004361061004c576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806341c0e1b514610051578063cfae321714610066575b600080fd5b341561005c57600080fd5b6100646100f4565b005b341561007157600080fd5b610079610185565b6040518080602001828103825283818151815260200191508051906020019080838360005b838110156100b957808201518184015260208101905061009e565b50505050905090810190601f1680156100e65780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff161415610183576000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16ff5b565b61018d61022d565b60018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156102235780601f106101f857610100808354040283529160200191610223565b820191906000526020600020905b81548152906001019060200180831161020657829003601f168201915b5050505050905090565b6020604051908101604052806000815250905600a165627a7a72305820248e9cb42cce2cbc2411049f80263f39f80d8823dde51705a7b4bff6351d01c30029', 
+     gas: '4700000'
+   }, function (e, contract){
+    console.log(e, contract);
+    if (typeof contract.address !== 'undefined') {
+         console.log('Contract mined! address: ' + contract.address + ' transactionHash: ' + contract.transactionHash);
+    }
+ })
+loadScript("/Users/geetsa/workplace/BlockChain/smartcontract_diamond.js")
+eth.getTransaction("0x6b27c20faab4bcdbc05dcf136099f859b5cd5502c097aa868e94daf1479df0e5")
+admin.peers
+admin.nodeinfo
+admin.nodeInfo
+loadScript("/Users/geetsa/workplace/BlockChain/smartcontract_diamond.js")
+eth.blockNumber
+admin.peers
