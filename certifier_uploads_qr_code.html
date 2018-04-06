@@ -1,11 +1,12 @@
 <html>
     <head>
         <title>Upload RF ID</title>
+        <script src="web3.js-develop/dist/web3.js"></script>
     </head>
     <body class=”container” style="background-color: #f9f9f9; margin: 0;">
         <h2 style="background-color: #24303d; border-color: #e7e7e7; text-align: center; padding: 20px 12px; border: 1px solid #eeeeee; box-shadow: 0 1px 2px #888888; color: #fff;">Start your transaction</h2>
-        <div class=”tab-content”">
-            <!--This is set to display:block, and should change to none once the RFID is uploaded. -->
+        <div class=”tab-content">
+            <!-- This is set to display:block, and should change to none once the RFID is uploaded. -->
             <div role=”tabpanel” id="tab-pane" class=”tab-pane active” id=”blockchain” style="margin-left: 25px;">
                 <form onsubmit="return false;">
                     <label for="rfid" style="display: inline-block; margin: 10 30 10 25;">RFID: </label>
@@ -13,16 +14,16 @@
                     <br>
                     <input type="submit" value="Submit" style="margin: 15 25 10 25; background-color: #ff9801; padding: 12px 20px; color: white; border-radius: 8px;cursor: pointer;" onclick="showHide()">
                     <br>
-                </form> 
+                </form>
             </div>
             <!--This is set to display:none, and should change to block once the RFID is uploaded. -->
                 <div id="certification">
                     <h2>Here are the details of your gold:</h2>
-                    <div style="margin-left:10px;"><b>Name:</b> GoldNecklace</div>
-                    <div style="margin-left:10px;"><b>Owner:</b> GoldDigger</div>
-                    <div style="margin-left:10px;"><b>Weight:</b> 8 lbs</div>
-                    <div style="margin-left:10px;"><b>Karat:</b> 22</div>
-                    <h3>You are authorized to certify this product.</h3> 
+                    <div style="margin-left:10px;"><b>Name:</b>GoldNecklace</div>
+                    <div style="margin-left:10px;"><b>Owner:</b>GoldDigger</div>
+                    <div style="margin-left:10px;"><b>Weight (in lbs):</b>8</div>
+                    <div style="margin-left:10px;"><b>Karat:</b>22</div>
+                    <h3>You are authorized to certify this product.</h3>
                     <form onsubmit="return false;">
                         <label for="rfid" style="display: inline-block; margin: 10 30 25 25;">Certificate: </label>
                         <input type="file" id="rfid" name="file">
@@ -32,25 +33,45 @@
                     </form>
                     <h3 id="success-message" style="margin-left: 25px; color: green"></h3>
                     <div id="block-details" style="margin-left: 25px;">
-                        <div style="margin-left:10px;"><b>Name:</b> GoldNecklace</div>
-                        <div style="margin-left:10px;"><b>Owner:</b> GoldDigger</div>
-                        <div style="margin-left:10px;"><b>Weight:</b> 8 lbs</div>
-                        <div style="margin-left:10px;"><b>Karat:</b> 22</div>
-                        <div style="margin-left:10px;"><b>Certificate Id:</b> 123456789</div>
+                        <div style="margin-left:10px;"><b>Name:</b><div id="name"></div></div>
+                        <div style="margin-left:10px;"><b>Owner:</b><div id="owner"></div></div>
+                        <div style="margin-left:10px;"><b>Weight:</b><div id="weight"></div></div>
+                        <div style="margin-left:10px;"><b>Karat:</b><div id="karat"></div></div>
+                        <div style="margin-left:10px;"><b>Certificate Id:</b><div id="certificateId"></div></div>
                     </div>
                 </div>
         </div>
+        <script>
+            var Web3 = require('web3');
+            var web3 = new Web3();
+
+            web3.setProvider(new web3.providers.HttpProvider("http://127.0.0.1:8545"));
+
+            var diamondContractABI = [{"constant":true,"inputs":[],"name":"getWeight","outputs":[{"name":"_weight","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getOwner","outputs":[{"name":"_owner","type":"bytes15"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getName","outputs":[{"name":"_name","type":"bytes15"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getKarat","outputs":[{"name":"_karat","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getCertificateId","outputs":[{"name":"_certificateId","type":"bytes15"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes15"},{"name":"_weight","type":"uint256"},{"name":"_karat","type":"uint256"},{"name":"_owner","type":"bytes15"},{"name":"_certificateId","type":"bytes15"}],"name":"register","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_owner","type":"bytes15"}],"name":"transfer","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}];
+
+            var sampleContract = web3.eth.contract(diamondContractABI);
+            var firstBlockAddr = '0x821ddbcfa145d6b1160cdc137c26764c68b8924e'
+            var sampleContractInstance = sampleContract.at(firstBlockAddr);
+            var karat = sampleContractInstance.getKarat.call().toString();
+            var weight = sampleContractInstance.getWeight.call().toString();
+            var owner = web3.toUtf8(sampleContractInstance.getOwner.call().toString());
+            var certificateId = web3.toUtf8(sampleContractInstance.getCertificateId.call().toString());
+            var name = web3.toUtf8(sampleContractInstance.getName.call().toString());
+
+            function showHide() {
+                 document.getElementById("tab-pane").style.display = "none";
+                 document.getElementById("certification").style.display = "block";
+            }
+            function showMessage() {
+                 document.getElementById("success-message").innerHTML = "Product Certified successfully! Block creation is complete.";
+                 document.getElementById("karat").innerHTML = karat;
+                 document.getElementById("weight").innerHTML = weight;
+                 document.getElementById("owner").innerHTML = owner;
+                 document.getElementById("name").innerHTML = name;
+                 document.getElementById("certificateId").innerHTML = certificateId;
+            }
+        </script>
     </body>
-<script>
-    function showHide() {
-         document.getElementById("tab-pane").style.display = "none";
-         document.getElementById("certification").style.display = "block";
-    }
-    function showMessage() {
-         document.getElementById("success-message").innerHTML = "Product Certified successfully! Block creation is completed:";
-         document.getElementById("block-details").style.display = "block";
-    }
-</script>
 </html>
 
 <style>
