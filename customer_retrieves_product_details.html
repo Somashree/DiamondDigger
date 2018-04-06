@@ -1,6 +1,7 @@
 <html>
     <head>
         <title>Retrieve details from RF ID</title>
+        <script src="web3.js-develop/dist/web3.js"></script>
     </head>
     <body class=”container” style="background-color: #f9f9f9; margin: 0;">
         <h2 style="background-color: #24303d; border-color: #e7e7e7; text-align: center; padding: 20px 12px; border: 1px solid #eeeeee; box-shadow: 0 1px 2px #888888; color: #fff;">Retrieve Product Details</h2>
@@ -13,44 +14,96 @@
                     <br>
                     <input type="submit" value="Submit" style="margin: 15 25 10 25; background-color: #ff9801; padding: 12px 20px; color: white; border-radius: 8px;cursor: pointer;" onclick="showHide()">
                     <br>
-                </form> 
+                </form>
             </div>
             <!--This is set to display:none, and should change to block once the RFID is uploaded. -->
             <div id="view-ownership">
                 <h2>Here are the details of your gold:</h2>
-                    <h4>Block 1:</h4>
-                    <div style="margin-left:10px;"><b>Name:</b> GoldNecklace</div>
-                    <div style="margin-left:10px;"><b>Owner:</b> GoldDigger</div>
-                    <div style="margin-left:10px;"><b>Weight:</b> 8 lbs</div>
-                    <div style="margin-left:10px;"><b>Karat:</b> 22</div>
-                    <div style="margin-left:10px;"><b>Certificate Id:</b> 123456789</div>
-                    <h4>Block 2:</h4>
-                    <div style="margin-left:10px;"><b>Name:</b> GoldNecklace</div>
-                    <div style="margin-left:10px;"><b>Owner:</b> GoldsRUs</div>
-                    <div style="margin-left:10px;"><b>Weight:</b> 8 lbs</div>
-                    <div style="margin-left:10px;"><b>Karat:</b> 22</div>
-                    <div style="margin-left:10px;"><b>Certificate Id:</b> 123456789</div>
                     <h4>Block 3:</h4>
-                    <div style="margin-left:10px;"><b>Name:</b> GoldNecklace</div>
-                    <div style="margin-left:10px;"><b>Owner:</b> Amazon</div>
-                    <div style="margin-left:10px;"><b>Weight:</b> 8 lbs</div>
-                    <div style="margin-left:10px;"><b>Karat:</b> 22</div>
-                    <div style="margin-left:10px;"><b>Certificate Id:</b> 123456789</div>
+                    <div style="margin-left:10px;"><b>Name:</b><div id="name3"></div></div>
+                    <div style="margin-left:10px;"><b>Owner:</b><div id="owner3"></div></div>
+                    <div style="margin-left:10px;"><b>Weight (lbs):</b><div id="weight3"></div></div>
+                    <div style="margin-left:10px;"><b>Karat:</b><div id="karat3"></div></div>
+                    <div style="margin-left:10px;"><b>Certificate Id:</b><div id="certificateId3"></div></div>
+                    <h4>Block 2:</h4>
+                    <div style="margin-left:10px;"><b>Name:</b><div id="name2"></div></div>
+                    <div style="margin-left:10px;"><b>Owner:</b><div id="owner2"></div></div>
+                    <div style="margin-left:10px;"><b>Weight (lbs):</b><div id="weight2"></div></div>
+                    <div style="margin-left:10px;"><b>Karat:</b><div id="karat2"></div></div>
+                    <div style="margin-left:10px;"><b>Certificate Id:</b><div id="certificateId2"></div></div>
+                    <h4>Block 1:</h4>
+                    <div style="margin-left:10px;"><b>Name:</b><div id="name1"></div></div>
+                    <div style="margin-left:10px;"><b>Owner:</b><div id="owner1"></div></div>
+                    <div style="margin-left:10px;"><b>Weight (lbs):</b><div id="weight1"></div></div>
+                    <div style="margin-left:10px;"><b>Karat:</b><div id="karat1"></div></div>
+                    <div style="margin-left:10px;"><b>Certificate Id:</b><div id="certificateId1"></div></div>
             </div>
             <h3 id="error-message" style="margin-left: 25px; color: red">No ownership data found related to the RFID entered!</h3>
         </div>
-    </body>
-    <script>
-        function showHide() {
-            if(document.getElementById("rfid").value.indexOf("RFID.txt") >= 0) {
-                document.getElementById("error-message").style.display = "none";
-                document.getElementById("view-ownership").style.display = "block";
-            } else {
-                document.getElementById("view-ownership").style.display = "none";
-                document.getElementById("error-message").style.display = "block";
+        <script>
+            var Web3 = require('web3');
+            var web3 = new Web3();
+
+            web3.setProvider(new web3.providers.HttpProvider("http://127.0.0.1:8545"));
+
+            var diamondContractABI = [{"constant":true,"inputs":[],"name":"getWeight","outputs":[{"name":"_weight","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getOwner","outputs":[{"name":"_owner","type":"bytes15"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getName","outputs":[{"name":"_name","type":"bytes15"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getKarat","outputs":[{"name":"_karat","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"getCertificateId","outputs":[{"name":"_certificateId","type":"bytes15"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_name","type":"bytes15"},{"name":"_weight","type":"uint256"},{"name":"_karat","type":"uint256"},{"name":"_owner","type":"bytes15"},{"name":"_certificateId","type":"bytes15"}],"name":"register","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_owner","type":"bytes15"}],"name":"transfer","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}];
+
+            var sampleContract = web3.eth.contract(diamondContractABI);
+            var firstBlockAddr = '0x821ddbcfa145d6b1160cdc137c26764c68b8924e';
+            var secondBlockAddr = '0xa5f08de1fbe1e3c309ac7e059bd7b67439670170';
+            var thirdBlockAddr = '0xfa47f19f8815bf91fbdfb34fa4c95609a1a22b71';
+
+            var sampleContractInstance1 = sampleContract.at(firstBlockAddr);
+            var sampleContractInstance2 = sampleContract.at(secondBlockAddr);
+            var sampleContractInstance3 = sampleContract.at(thirdBlockAddr);
+
+            var name1 = web3.toUtf8(sampleContractInstance1.getName.call().toString());
+            var karat1 = sampleContractInstance1.getKarat.call().toString();
+            var weight1 = sampleContractInstance1.getWeight.call().toString();
+            var owner1 = web3.toUtf8(sampleContractInstance1.getOwner.call().toString());
+            var certificateId1 = web3.toUtf8(sampleContractInstance1.getCertificateId.call().toString());
+
+            var name2 = web3.toUtf8(sampleContractInstance2.getName.call().toString());
+            var karat2 = sampleContractInstance2.getKarat.call().toString();
+            var weight2 = sampleContractInstance2.getWeight.call().toString();
+            var owner2 = web3.toUtf8(sampleContractInstance2.getOwner.call().toString());
+            var certificateId2 = web3.toUtf8(sampleContractInstance2.getCertificateId.call().toString());
+
+            var name3 = web3.toUtf8(sampleContractInstance3.getName.call().toString());
+            var karat3 = sampleContractInstance3.getKarat.call().toString();
+            var weight3 = sampleContractInstance3.getWeight.call().toString();
+            var owner3 = web3.toUtf8(sampleContractInstance3.getOwner.call().toString());
+            var certificateId3 = web3.toUtf8(sampleContractInstance3.getCertificateId.call().toString());
+
+            document.getElementById("karat1").innerHTML = karat1;
+            document.getElementById("weight1").innerHTML = weight1;
+            document.getElementById("owner1").innerHTML = owner1;
+            document.getElementById("name1").innerHTML = name1;
+            document.getElementById("certificateId1").innerHTML = certificateId1;
+
+            document.getElementById("karat2").innerHTML = karat2;
+            document.getElementById("weight2").innerHTML = weight2;
+            document.getElementById("owner2").innerHTML = owner2;
+            document.getElementById("name2").innerHTML = name2;
+            document.getElementById("certificateId2").innerHTML = certificateId2;
+
+            document.getElementById("karat3").innerHTML = karat3;
+            document.getElementById("weight3").innerHTML = weight3;
+            document.getElementById("owner3").innerHTML = owner3;
+            document.getElementById("name3").innerHTML = name3;
+            document.getElementById("certificateId3").innerHTML = certificateId3;
+
+            function showHide() {
+                if(document.getElementById("rfid").value.indexOf("RFID.txt") >= 0) {
+                    document.getElementById("error-message").style.display = "none";
+                    document.getElementById("view-ownership").style.display = "block";
+                } else {
+                    document.getElementById("view-ownership").style.display = "none";
+                    document.getElementById("error-message").style.display = "block";
+                }
             }
-        }
-    </script>
+        </script>
+    </body>
 </html>
 
 <style>
