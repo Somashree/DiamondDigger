@@ -18,14 +18,36 @@
             <!--This is set to display:none, and should change to block once the RFID is uploaded. -->
             <div id="transfer-ownership">
                 <h2>Here are the details of your gold:</h2>
+                <div style="margin-left:10px;"><b>Owner 1:</b> GoldDigger</div>
+                <div style="margin-left:10px;"><b>Owner 2 (current):</b> GoldsRUs</div>
+                <div style="margin-left:10px;"><b>Name:</b> GoldNecklace</div>
                 <div style="margin-left:10px;"><b>Weight:</b> 8 lbs</div>
                 <div style="margin-left:10px;"><b>Karat:</b> 22</div>
-                <div style="margin-left:10px;"><b>Form/Shape:</b> Necklace</div>
                 <form onsubmit="return false;">
                     <input type="submit" value="Transfer Ownership / Receive" style="margin: 25 25 25 0; background-color: #ff9801; padding: 12px 20px; color: white; border-radius: 8px;cursor: pointer;" onclick="showMessage()">
                     <br>
                 </form>
                 <h3 id="success-message" style="color: green"></h3>
+                <div id="block-details" style="margin-left: 25px;">
+                    <h4>Block 1:</h4>
+                    <div style="margin-left:10px;"><b>Name:</b> GoldNecklace</div>
+                    <div style="margin-left:10px;"><b>Owner:</b> GoldDigger</div>
+                    <div style="margin-left:10px;"><b>Weight:</b> 8 lbs</div>
+                    <div style="margin-left:10px;"><b>Karat:</b> 22</div>
+                    <div style="margin-left:10px;"><b>Certificate Id:</b> 123456789</div>
+                    <h4>Block 2:</h4>
+                    <div style="margin-left:10px;"><b>Name:</b> GoldNecklace</div>
+                    <div style="margin-left:10px;"><b>Owner:</b> GoldsRUs</div>
+                    <div style="margin-left:10px;"><b>Weight:</b> 8 lbs</div>
+                    <div style="margin-left:10px;"><b>Karat:</b> 22</div>
+                    <div style="margin-left:10px;"><b>Certificate Id:</b> 123456789</div>
+                    <h4>Block 3:</h4>
+                    <div style="margin-left:10px;"><b>Name:</b> GoldNecklace</div>
+                    <div style="margin-left:10px;"><b>Owner:</b> Amazon</div>
+                    <div style="margin-left:10px;"><b>Weight:</b> 8 lbs</div>
+                    <div style="margin-left:10px;"><b>Karat:</b> 22</div>
+                    <div style="margin-left:10px;"><b>Certificate Id:</b> 123456789</div>
+                </div>
             </div>
         </div>
     </body>
@@ -35,6 +57,7 @@
             document.getElementById("transfer-ownership").style.display = "block";
         }
         function showMessage() {
+            document.getElementById("block-details").style.display = "block";
             document.getElementById("success-message").innerHTML = "Ownership transferred successfully!";
         }
     </script>
@@ -66,6 +89,10 @@ position: relative;
 padding: 3px 8px 2px;
 }
 
+h4 {
+    margin-bottom: 0px;
+}
+
 #transfer-ownership {
     margin-left: 25px;
     display: none;
@@ -73,5 +100,10 @@ padding: 3px 8px 2px;
 
 #tab-pane {
     display:block;
+}
+
+
+#block-details {
+    display:none;
 }
 </style>

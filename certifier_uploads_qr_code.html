@@ -18,9 +18,10 @@
             <!--This is set to display:none, and should change to block once the RFID is uploaded. -->
                 <div id="certification">
                     <h2>Here are the details of your gold:</h2>
+                    <div style="margin-left:10px;"><b>Name:</b> GoldNecklace</div>
+                    <div style="margin-left:10px;"><b>Owner:</b> GoldDigger</div>
                     <div style="margin-left:10px;"><b>Weight:</b> 8 lbs</div>
                     <div style="margin-left:10px;"><b>Karat:</b> 22</div>
-                    <div style="margin-left:10px;"><b>Form/Shape:</b> Necklace</div>
                     <h3>You are authorized to certify this product.</h3> 
                     <form onsubmit="return false;">
                         <label for="rfid" style="display: inline-block; margin: 10 30 25 25;">Certificate: </label>
@@ -30,6 +31,13 @@
                         <br>
                     </form>
                     <h3 id="success-message" style="margin-left: 25px; color: green"></h3>
+                    <div id="block-details" style="margin-left: 25px;">
+                        <div style="margin-left:10px;"><b>Name:</b> GoldNecklace</div>
+                        <div style="margin-left:10px;"><b>Owner:</b> GoldDigger</div>
+                        <div style="margin-left:10px;"><b>Weight:</b> 8 lbs</div>
+                        <div style="margin-left:10px;"><b>Karat:</b> 22</div>
+                        <div style="margin-left:10px;"><b>Certificate Id:</b> 123456789</div>
+                    </div>
                 </div>
         </div>
     </body>
@@ -39,7 +47,8 @@
          document.getElementById("certification").style.display = "block";
     }
     function showMessage() {
-         document.getElementById("success-message").innerHTML = "Product Certified successfully! Block creation is complete.";
+         document.getElementById("success-message").innerHTML = "Product Certified successfully! Block creation is completed:";
+         document.getElementById("block-details").style.display = "block";
     }
 </script>
 </html>
@@ -77,5 +86,9 @@ padding: 3px 8px 2px;
 
 #tab-pane {
     display:block;
+}
+
+#block-details {
+    display: none;
 }
 </style>
